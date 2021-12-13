@@ -70,10 +70,6 @@ The web application should now be able to run on **localhost:8000**.
     - **/registry/{servicename}** -- returns all instances of servicename
     - **/registry/{servicename} POST** -- registers an instance of servicename. The url is provided in the format: text="url"
 
-Authentication: 
-- username=**student** 
-- password=**password**
-
 You can also create a post as a certain user by running these commands in a new command line:
 ```
 # examples for creating post
