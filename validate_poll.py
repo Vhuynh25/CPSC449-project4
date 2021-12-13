@@ -8,7 +8,7 @@ import json
 
 config = configparser.ConfigParser()
 config.read("./etc/users.ini")
-client = greenstalk.Client(('127.0.0.1', 11300),watch={"posts","polls"})
+client = greenstalk.Client(('127.0.0.1', 11300),watch="polls")
 
 def getUserEmail(db, username):
         email_user_generator= db["users"].rows_where("username = :username", {"username": username}, select='email_address')
@@ -42,9 +42,9 @@ def post_loop():
                         server.set_debuglevel(1)
                         server.sendmail(fromaddr, toaddrs, msg)
                         server.quit()
-            client.delete(job)
         except:
             None
+        client.delete(job)
 
 if __name__ == "__main__":
     post_loop()

@@ -1,0 +1,89 @@
+# SYNC POST
+# hey -m POST -H "Authorization: Basic $(echo -n bob123:hello123 | base64)" http://localhost:8000/timelines/bob123/post text="test http://localhost:8000/polls/6"
+Summary:
+  Total:	0.6918 secs
+  Slowest:	0.2416 secs
+  Fastest:	0.0086 secs
+  Average:	0.1469 secs
+  Requests/sec:	289.0853
+  
+  Total data:	28200 bytes
+  Size/request:	141 bytes
+
+Response time histogram:
+  0.009 [1]	|■
+  0.032 [0]	|
+  0.055 [7]	|■■■■■
+  0.079 [14]|■■■■■■■■■
+  0.102 [35]|■■■■■■■■■■■■■■■■■■■■■■■
+  0.125 [15]|■■■■■■■■■■
+  0.148 [12]|■■■■■■■■
+  0.172 [21]|■■■■■■■■■■■■■■
+  0.195 [60]|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.218 [33]|■■■■■■■■■■■■■■■■■■■■■■
+  0.242 [2]	|■
+
+
+Latency distribution:
+  10% in 0.0770 secs
+  25% in 0.0991 secs
+  50% in 0.1702 secs
+  75% in 0.1899 secs
+  90% in 0.2018 secs
+  95% in 0.2053 secs
+  99% in 0.2221 secs
+
+Details (average, fastest, slowest):
+  DNS+dialup:	0.0007 secs, 0.0086 secs, 0.2416 secs
+  DNS-lookup:	0.0000 secs, 0.0000 secs, 0.0002 secs
+  req write:	0.0004 secs, 0.0000 secs, 0.0067 secs
+  resp wait:	0.1458 secs, 0.0086 secs, 0.2352 secs
+  resp read:	0.0000 secs, 0.0000 secs, 0.0001 secs
+
+Status code distribution:
+  [500]	200 responses
+
+# ASYNC POST
+#hey -m POST -H "Authorization: Basic $(echo -n bob123:hello123 | base64)" http://localhost:8000/timelines/bob123/asyncpost text="test http://localhost:8000/polls/6"
+Summary:
+  Total:	0.6150 secs
+  Slowest:	0.2466 secs
+  Fastest:	0.0067 secs
+  Average:	0.1300 secs
+  Requests/sec:	325.2039
+  
+  Total data:	12600 bytes
+  Size/request:	63 bytes
+
+Response time histogram:
+  0.007 [1]	|■
+  0.031 [3]	|■■
+  0.055 [5]	|■■■
+  0.079 [44]|■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.103 [12]|■■■■■■■
+  0.127 [15]|■■■■■■■■■
+  0.151 [28]|■■■■■■■■■■■■■■■■
+  0.175 [69]|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.199 [9]	|■■■■■
+  0.223 [8]	|■■■■■
+  0.247 [6]	|■■■
+
+
+Latency distribution:
+  10% in 0.0623 secs
+  25% in 0.0756 secs
+  50% in 0.1436 secs
+  75% in 0.1678 secs
+  90% in 0.1781 secs
+  95% in 0.2124 secs
+  99% in 0.2464 secs
+
+Details (average, fastest, slowest):
+  DNS+dialup:	0.0015 secs, 0.0067 secs, 0.2466 secs
+  DNS-lookup:	0.0000 secs, 0.0000 secs, 0.0026 secs
+  req write:	0.0002 secs, 0.0000 secs, 0.0019 secs
+  resp wait:	0.1282 secs, 0.0066 secs, 0.2413 secs
+  resp read:	0.0001 secs, 0.0000 secs, 0.0067 secs
+
+Status code distribution:
+  [409]	200 responses
