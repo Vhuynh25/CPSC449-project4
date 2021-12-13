@@ -29,10 +29,14 @@ sqlite-utils add-foreign-key ./var/users.db follows following_id users user_id
 
 To start the services in production, run these commands in separate command lines:
 ```
-# cd to api directory first!
+# Run foreman instances -- cd to api directory first!
 foreman start -m users=1,timelines=3,registry=1,polls=1,likes=1,async_post=1,validate_like=1,validate_poll=1
-# cd to ./etc/haproxy
+# Run haproxy load balancer -- cd to ./etc/haproxy
 haproxy -f haproxy.cfg
+# Run DynamoDB local server -- cd to DyanmoDB folder
+java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -port 8001
+# Run email server
+python3 -m smtpd -n -c DebuggingServer localhost:1025
 ```
 The web application should now be able to run on **localhost:8000**.
 
@@ -70,6 +74,11 @@ The web application should now be able to run on **localhost:8000**.
     - **/registry/{servicename}** -- returns all instances of servicename
     - **/registry/{servicename} POST** -- registers an instance of servicename. The url is provided in the format: text="url"
 
+6) async_post.py
+7) validate_like.py
+8) validate_poll.py
+    - consume jobs from "polls" watchlist, validate if poll url is legit, sends "Invalid Message" email to the user who posted if poll does not exist
+
 You can also create a post as a certain user by running these commands in a new command line:
 ```
 # examples for creating post
@@ -86,8 +95,4 @@ hey -m POST -a bob123:hello123 http://localhost:8000/timelines/bob123/post text=
 hey -m POST -a bob123:hello123 http://localhost:8000/timelines/bob123/asyncpost text="test"
 ```
 ## NOTE:
-1) Unfortunately, we were not able to implement the authentication correctly based on each user.
-    - the setLogin(username) function does not override the default authentication verify function
-    - We do not know how to get past this issue
-
-Other than this, all the features were implemented and should be working correctly. 
+All the features were implemented and should be working correctly. 
