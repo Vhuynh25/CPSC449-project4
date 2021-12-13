@@ -1,6 +1,6 @@
 # CPSC449-Project4
 
-## Project Members
+### Project Members
 * Brandon Le (Ble2306@csu.fullerton.edu)
 * Austin Sohn (austinsohn@csu.fullerton.edu)
 * Vien Huynh (Squire25@csu.fullerton.edu)
