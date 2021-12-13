@@ -153,14 +153,10 @@ def create_post(
     username: hug.types.text,
     body: hug.types.json,
 ):   
-
     try:
         body["username"] = username
-        if not "url" in body:
-            body["url"] = ""
-        else:
-            msq_queue.use("polls")
-            msq_queue.put(json.dumps(body))
+        msq_queue.use("polls")
+        msq_queue.put(json.dumps(body))
         msq_queue.use("posts")
         msq_queue.put(json.dumps(body))
     except Exception as e:
