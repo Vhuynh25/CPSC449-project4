@@ -79,6 +79,17 @@ The web application should now be able to run on **localhost:8000**.
 8) validate_poll.py
     - consume jobs from "polls" watchlist, validate if poll url is legit, sends "Invalid poll" email to the user who posted if poll does not exist
 
+## Performance Testing Results
+1) Post without validation
+    - SYNC POST: Total:	0.6918 secs
+    - ASYNC POST: Total: 0.6150 secs
+2) Post with validation
+    - SYNC POST: Total:	0.7258 secs
+    - ASYNC POST: Total: 0.4725 secs
+
+For more information, look to the "post without validation.txt" and "post with validation.txt"
+
+## Examples
 You can also create a post as a certain user by running these commands in a new command line:
 ```
 # examples for creating post
@@ -91,8 +102,8 @@ Further description on how the data is organized can be seen from the .csv files
 
 examples using hey:
 ```
-hey -m POST -a bob123:hello123 http://localhost:8000/timelines/bob123/post text="test" 
-hey -m POST -a bob123:hello123 http://localhost:8000/timelines/bob123/asyncpost text="test"
+hey -m POST -H "Authorization: Basic $(echo -n bob123:hello123 | base64)" http://localhost:8000/timelines/bob123/asyncpost text="test http://localhost:8000/polls/6"
+hey -m POST -H "Authorization: Basic $(echo -n bob123:hello123 | base64)" http://localhost:8000/timelines/bob123/post text="test http://localhost:8000/polls/6"
 ```
 ## NOTE:
 All the features were implemented and should be working correctly. 
