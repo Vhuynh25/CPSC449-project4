@@ -35,10 +35,9 @@ def post_loop():
                     print(r.status_code)
                     if r.status_code != 200:
                         msg = "Invalid poll"
-                        print(msg)
                         # python3 -m smtpd -n -c DebuggingServer localhost:1025
-                        fromaddr = getUserEmail(db, body["username"])
-                        toaddrs = "ble2306@gmail.com"
+                        fromaddr = "test@gmail.com"
+                        toaddrs = getUserEmail(db, body["username"])
                         server = smtplib.SMTP('localhost', 1025)
                         server.set_debuglevel(1)
                         server.sendmail(fromaddr, toaddrs, msg)
