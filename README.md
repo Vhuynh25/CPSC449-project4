@@ -25,7 +25,13 @@ sqlite-utils add-foreign-key ./var/users.db follows user_id users user_id
 sqlite-utils add-foreign-key ./var/users.db follows following_id users user_id
 ```
 
-To start the services in production, run these commands in separate command lines:
+AWS Configuration for DynamoDB server
+   - AWS Access Key ID [None]: fakeMyKeyId
+   - AWS Secret Access Key [None]: fakeSecretAccessKey
+   - Default region name [None]: us-west-2
+   - Default output format [None]: table
+
+To start the services in production, run these commands in separate terminals:
 ```
 # Run foreman instances -- cd to api directory first!
 foreman start -m users=1,timelines=3,registry=1,polls=1,likes=1,async_post=1,validate_like=1,validate_poll=1
@@ -39,6 +45,7 @@ java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -p
 # Run email server
 python3 -m smtpd -n -c DebuggingServer localhost:1025
 ```
+
 The web application should now be able to run on **localhost:8000**.
 
 ## REST API documentation for each service
