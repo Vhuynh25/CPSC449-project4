@@ -77,7 +77,7 @@ The web application should now be able to run on **localhost:8000**.
 6) async_post.py
 7) validate_like.py
 8) validate_poll.py
-    - consume jobs from "polls" watchlist, validate if poll url is legit, sends "Invalid Message" email to the user who posted if poll does not exist
+    - consume jobs from "polls" watchlist, validate if poll url is legit, sends "Invalid poll" email to the user who posted if poll does not exist
 
 You can also create a post as a certain user by running these commands in a new command line:
 ```
