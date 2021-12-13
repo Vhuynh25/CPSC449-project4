@@ -30,7 +30,7 @@ sqlite-utils add-foreign-key ./var/users.db follows following_id users user_id
 To start the services in production, run these commands in separate command lines:
 ```
 # cd to api directory first!
-foreman start -m users=1,timelines=3,registry=1,polls=1,likes=1,async_post=1,poller=1, validate_like=1, validate_poll=1
+foreman start -m users=1,timelines=3,registry=1,polls=1,likes=1,async_post=1,validate_like=1,validate_poll=1
 # cd to ./etc/haproxy
 haproxy -f haproxy.cfg
 ```
