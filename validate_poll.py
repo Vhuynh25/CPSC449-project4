@@ -24,7 +24,7 @@ def post_loop():
         try:
             job = client.reserve()
             body = json.loads(job.body)
-            validate = re.findall("http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+", body["url"])
+            validate = re.findall("http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+", body["text"])
 
             if len(validate) != 0:
                 validate = validate[0]
@@ -42,6 +42,7 @@ def post_loop():
                         server.set_debuglevel(1)
                         server.sendmail(fromaddr, toaddrs, msg)
                         server.quit()
+            client.delete(job)
         except:
             None
 
